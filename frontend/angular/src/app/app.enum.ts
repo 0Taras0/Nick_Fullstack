@@ -19,6 +19,7 @@ export const enum IconName {
   Close = 'close',
   Link = 'link',
   Info = 'info',
+  Delete = 'delete',
 }
 
 export const enum AriaLabel {
@@ -31,6 +32,7 @@ export const enum AriaLabel {
   Close = 'Close',
   ParticipantLink = 'Copy personal link',
   Info = 'Info',
+  Delete = 'Delete user?',
 }
 
 export const enum InputSidebarText {
@@ -120,6 +122,7 @@ export enum ToastMessage {
   PleaseCreateYourRoom = 'Please create your room first.',
   PleaseJoinTheRoom = 'Please join the room first',
   SuccessDrawNames = 'Success! All participants are matched.\nLet the gifting magic start!',
+  UserDeleted = 'User was successfully deleted',
 }
 
 export const enum InputType {
@@ -164,6 +167,7 @@ export const enum ButtonText {
   ViewWishlist = 'View Wishlist',
   Cancel = 'Cancel',
   ViewInformation = 'View Information',
+  Delete = 'Delete',
 }
 
 export const enum ButtonType {
@@ -184,6 +188,7 @@ export const enum PictureName {
   StNick = 'st-nick',
   Cookie = 'cookie',
   Invitation = 'invitation',
+  Exclamation = 'exclamation-circle',
 }
 
 export const enum FormTitle {
@@ -292,12 +297,14 @@ export const enum ModalTitle {
   ParticipantDetails = 'Participant Details',
   PersonalInformation = 'Personal Information',
   Invitation = 'Invite New Members',
+  DeleteUser = 'Delete user?',
 }
 
 export const enum ModalSubtitle {
   ParticipantInfo = 'Everything about your Secret Nick player!',
   PersonalInfo = 'Secret Nick needs to know where to send your present!',
   Invitation = 'Share the link below with 20 friends to invite them',
+  DeleteUser = 'This action will permanently remove the user from the system.All related data and access will be lost. Are you sure you want to continue?',
 }
 
 export const enum PersonalInfoTerm {

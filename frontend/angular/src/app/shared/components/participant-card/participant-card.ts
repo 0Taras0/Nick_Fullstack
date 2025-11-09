@@ -25,6 +25,7 @@ import { ModalService } from '../../../core/services/modal';
 import { getPersonalInfo } from '../../../utils/get-personal-info';
 import { UserService } from '../../../room/services/user';
 import type { User } from '../../../app.models';
+import { DeleteUserModal } from '../../../room/components/delete-user-modal/delete-user-modal';
 
 @Component({
   selector: 'li[app-participant-card]',
@@ -57,7 +58,9 @@ export class ParticipantCard {
   public readonly iconCopy = IconName.Link;
   public readonly ariaLabelCopy = AriaLabel.ParticipantLink;
   public readonly iconInfo = IconName.Info;
+  public readonly iconDelete = IconName.Delete;
   public readonly ariaLabelInfo = AriaLabel.Info;
+  public readonly ariaLabelDelete = AriaLabel.Delete;
 
   @HostBinding('tabindex') tab = 0;
   @HostBinding('class.list-row') rowClass = true;
@@ -102,6 +105,48 @@ export class ParticipantCard {
     }
 
     this.#showPopup();
+  }
+
+  public onDeleteClick(): void {
+    if (!this.participant().isAdmin) {
+      this.#deleteParticipant();
+
+      return;
+    }
+
+    this.#showPopup();
+  }
+
+  #deleteParticipant(): void {
+    const personalInfo = getPersonalInfo(this.participant());
+    const roomLink = this.#urlService.getNavigationLinks(
+      this.participant().userCode || '',
+      NavigationLinkSegment.Join
+    ).absoluteUrl;
+
+    this.#userService
+      .getUsers()
+      .pipe(
+        tap(({ status }) => {
+          if (status === 200) {
+            this.#modalService.openWithResult(
+              DeleteUserModal,
+              { personalInfo, roomLink },
+              {
+                buttonAction: () =>
+                  this.#userService
+                    .deleteUser(this.participant().id.toString())
+                    .subscribe(() => {
+                      this.#modalService.close();
+                      this.#userService.getUsers().subscribe();
+                    }),
+                closeModal: () => this.#modalService.close(),
+              }
+            );
+          }
+        })
+      )
+      .subscribe();
   }
 
   public onCopyHover(target: EventTarget | null): void {

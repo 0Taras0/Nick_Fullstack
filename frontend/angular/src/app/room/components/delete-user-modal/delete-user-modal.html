@@ -1,0 +1,21 @@
+<app-common-modal-template
+  [headerPictureName]="pictureName"
+  [headerTitle]="title"
+  [buttonText]="buttonText"
+  [subtitle]="subtitle"
+  (buttonAction)="onActionButtonClick()"
+  (closeModal)="onCloseModal()"
+>
+  <div class="modal__content">
+    <section class="modal__content-item">
+      <h4 class="modal__title">Personal Information</h4>
+
+      <app-personal-info
+        class="modal__personal-info participant-info"
+        [personalInfo]="personalInfo()"
+        [showBackgroundPicture]="false"
+      >
+      </app-personal-info>
+    </section>
+  </div>
+</app-common-modal-template>

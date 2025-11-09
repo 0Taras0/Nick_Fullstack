@@ -75,6 +75,18 @@ export class ApiService {
     });
   }
 
+  public deleteUser(
+    id: string,
+    userCode: string
+  ): Observable<HttpResponse<User>> {
+    const params = new HttpParams().set('userCode', userCode);
+
+    return this.#http.delete<User>(`${this.#baseUrl}${Endpoint.users}/${id}`, {
+      params,
+      observe: 'response',
+    });
+  }
+
   public drawNames(userCode: string): Observable<HttpResponse<string>> {
     const params = new HttpParams().set('userCode', userCode);
 
