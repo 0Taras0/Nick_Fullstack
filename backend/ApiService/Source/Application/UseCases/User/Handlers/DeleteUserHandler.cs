@@ -43,6 +43,14 @@ namespace Epam.ItMarathon.ApiService.Application.UseCases.User.Handlers
 
             var users = room.Users;
 
+            //6. Check if User exists in Room
+            if (!users.Any(x => x.Id == request.UserId))
+            {
+                return Result.Failure<RoomAggregate, ValidationResult>(new NotFoundError([
+                    new ValidationFailure("UserId", "User with such Id not found in the room.")
+                    ]));
+            }
+
 
             //4. Check if UserId and UserCode correspond to the same User
             var userToDelete = users.FirstOrDefault(x => x.Id == request.UserId);
@@ -77,13 +85,7 @@ namespace Epam.ItMarathon.ApiService.Application.UseCases.User.Handlers
                     ]));
             }
 
-            //6. Check if User exists in Room
-            if (!users.Any(x => x.Id == request.UserId))
-            {
-                return Result.Failure<RoomAggregate, ValidationResult>(new NotFoundError([
-                    new ValidationFailure("UserId", "User with such Id not found in the room.")
-                    ]));
-            }
+            
             
 
 
