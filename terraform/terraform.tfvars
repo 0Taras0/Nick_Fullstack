@@ -82,5 +82,5 @@ db_subnet_group_name = "rds-private-subnet-group"
 # SSL variables
 ################################################################################
 
-domain_name = "marathon12323324.pp.ua"
-certificate_arn = "arn:aws:acm:eu-central-1:222735209456:certificate/fd6c612d-2050-4f4f-bf4e-5f187c2e0739"
+domain_name = "marathon12323328.pp.ua"
+certificate_arn = "arn:aws:acm:eu-central-1:222735209456:certificate/ae03700f-013b-435d-9c97-d1899e252d17"
